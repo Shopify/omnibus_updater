@@ -35,6 +35,7 @@ module OmnibusTrucker
           end.flatten.compact
       )]
       unless(@attrs)
+        set[:platform_version] = node[:lsb][:release].to_i if set[:platform_family] == 'debian'
         if(set[:platform_family] == 'rhel')
           @attrs = {:platform => 'el', :platform_version => set[:platform_version].to_i}
         else
